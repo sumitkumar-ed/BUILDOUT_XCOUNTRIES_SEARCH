@@ -1,10 +1,14 @@
-import React from 'react';
-import CountryList from './components/CountryList/CountryList';
+import React, { useState } from 'react';
+import Search from './components/Search/Search';
+import CountryList from "./components/CountryList/CountryList";
 
 const App = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <div className="App">
-      <CountryList />
+      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <CountryList searchQuery={searchQuery} />
     </div>
   );
 };
