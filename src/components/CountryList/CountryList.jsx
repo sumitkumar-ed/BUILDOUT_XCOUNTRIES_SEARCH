@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchCountries } from '../../api/api';
+import { getCountries } from '../../api/api';
 import Card from '../Card/Card';
 import Search from '../Search/Search';
 import './CountryList.css';
@@ -10,16 +10,16 @@ const CountryList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getCountries = async () => {
+    const fetchCountries = async () => {
       try {
-        const data = await fetchCountries();
+        const data = await getCountries();
         setCountries(data);
       } catch (error) {
         setError(error.message);
       }
     };
 
-    getCountries();
+    fetchCountries();
   }, []);
 
   const filteredCountries = countries.filter(country =>
