@@ -26,18 +26,18 @@ const CountryList = () => {
     country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
     <div className="country-list-container">
       <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <div className="country-list">
-        {filteredCountries.map(country => (
-          <Card key={country.cca3} country={country} />
-        ))}
-      </div>
+      {error ? (
+        <div>Error: {error}</div>
+      ) : (
+        <div className="country-list">
+          {filteredCountries.map(country => (
+            <Card key={country.cca3} country={country} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
