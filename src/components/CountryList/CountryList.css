@@ -1,5 +1,4 @@
-div {
-  width: 100%;
+.country-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Card from "../Card/Card";
-import "./CountryList.css";
+import React, { useEffect, useState } from 'react';
+import { fetchCountries } from '../../api/api';
+import Card from '../Card/Card';
+import './CountryList.css';
 
 const CountryList = ({ searchQuery }) => {
   const [countries, setCountries] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getCountries = async () => {
       try {
-        const resp = await axios.get("https://restcountries.com/v3.1/all");
-        setCountries(resp.data);
-      } catch (err) {
-        console.error(err);
+        const data = await fetchCountries();
+        setCountries(data);
+      } catch (error) {
+        setError(error.message);
       }
     };
-    fetchData();
+
+    getCountries();
   }, []);
 
-  const filteredCountries = countries.filter((country) =>
+  const filteredCountries = countries.filter(country =>
     country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return filteredCountries.map((country) => (
-    <Card key={country.cca3} country={country} />
-  ));
+  return (
+    <div className="country-list-container">
+      <div className="country-list">
+        {filteredCountries.map(country => (
+          <Card key={country.cca3} country={country} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default CountryList;
