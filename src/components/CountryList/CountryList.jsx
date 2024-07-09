@@ -22,13 +22,9 @@ const CountryList = ({ searchQuery }) => {
     country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return (
-    <div className="country-list">
-      {filteredCountries.map((country) => (
-        <Card key={country.cca3} country={country} />
-      ))}
-    </div>
-  );
+  return filteredCountries.map((country) => (
+    <Card key={country.cca3} country={country} />
+  ));
 };
 
 export default CountryList;
