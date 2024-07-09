@@ -31,7 +31,7 @@ const App = () => {
     try {
       const response = await fetch("https://restcountries.com/v3.1/all");
       if (!response.ok) {
-        throw new Error("Failed to fetch countries");
+        console.error("Failed to fetch countries");
       }
       const data = await response.json();
       setCountries(data);
@@ -58,13 +58,17 @@ const App = () => {
         value={searchTerm}
         onChange={handleSearch}
       />
-
-      {filteredCountries.map((country, index) => (
-        <div key={index} className="countryCard">
-          <img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
-          <p>{country.name.common}</p>
-        </div>
-      ))}
+      <div className="countryList">
+        {filteredCountries.map((country, index) => (
+          <div key={index} className="countryCard">
+            <img
+              src={country.flags.png}
+              alt={`Flag of ${country.name.common}`}
+            />
+            <p>{country.name.common}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
