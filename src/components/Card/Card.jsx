@@ -3,7 +3,7 @@ import './Card.css';
 
 const Card = ({ country }) => (
   <div className="countryCard">
-    <img src={country.flags.png} alt={`Flag of ${country.name.common}`} className="flag" />
+    <img src={country.flags.png} alt={`Flag of ${country.name.common}`}/>
     <p>{country.name.common}</p>
   </div>
 );

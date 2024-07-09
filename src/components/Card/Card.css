@@ -12,7 +12,7 @@
   margin: 10px;
 }
 
-.countryCard img.flag {
+.countryCard img {
   width: 100px;
   height: 70px;
   object-fit: contain;
