@@ -6,23 +6,34 @@ import "./CountryList.css";
 const CountryList = () => {
   const [countries, setCountries] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   const getCountries = async () => {
+  //     try {
+  //       const resp = await fetch("https://restcountries.com/v3.1/all");
+  //       if (!resp.ok) {
+  //         throw new Error("Failed to fetch countries");
+  //       }
+  //       const data = await resp.json();
+  //       setCountries(data);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   getCountries();
+  // }, []);
 
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchData = async () => {
       try {
         const resp = await fetch("https://restcountries.com/v3.1/all");
-        if (!resp.ok) {
-          throw new Error("Failed to fetch countries");
-        }
         const data = await resp.json();
         setCountries(data);
-      } catch (error) {
-        setError(error.message);
+      } catch (err) {
+        console.log(err);
       }
     };
-
-    fetchCountries();
+    fetchData();
   }, []);
 
   const filteredCountries = countries.filter((country) =>
@@ -32,11 +43,9 @@ const CountryList = () => {
   return (
     <>
       <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <div>
-        {filteredCountries.map((country) => (
-          <Card key={country.cca3} country={country} />
-        ))}
-      </div>
+      {filteredCountries.map((country) => (
+        <Card key={country.cca3} country={country} />
+      ))}
     </>
   );
 };
