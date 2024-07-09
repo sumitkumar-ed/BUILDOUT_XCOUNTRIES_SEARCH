@@ -1,13 +1,7 @@
-.country-list-container {
-    padding: 10px;
-  }
-  
-  .country-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-
-  /* ------------------------------ */
+div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}

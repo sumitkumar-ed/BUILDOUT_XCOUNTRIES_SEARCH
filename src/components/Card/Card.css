@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .countryCard {
     width: 130px;
     height: 130px;
@@ -78,4 +78,4 @@
   .countryCard p {
     font-size: 10px;
   }
-}
+} */
