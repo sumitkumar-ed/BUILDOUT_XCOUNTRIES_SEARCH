@@ -1,0 +1,11 @@
+import React from 'react';
+import './Card.css';
+
+const Card = ({ country }) => (
+  <div className="countryCard">
+    <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} className="flag" />
+    <p>{country.name.common}</p>
+  </div>
+);
+
+export default Card;
