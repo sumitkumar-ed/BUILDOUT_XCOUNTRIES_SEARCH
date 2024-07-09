@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { getCountries } from "../../api/api";
-import Card from "../Card/Card";
-import Search from "../Search/Search";
-import "./CountryList.css";
+import React, { useEffect, useState } from 'react';
+import { getCountries } from '../../api/api';
+import Card from '../Card/Card';
+import Search from '../Search/Search';
+import './CountryList.css';
 
 const CountryList = () => {
   const [countries, setCountries] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const CountryList = () => {
     fetchCountries();
   }, []);
 
-  const filteredCountries = countries.filter((country) =>
+  const filteredCountries = countries.filter(country =>
     country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -33,16 +33,8 @@ const CountryList = () => {
         <div>Error: {error}</div>
       ) : (
         <div className="country-list">
-          {filteredCountries.map((country) => (
-            // <Card key={country.cca3} country={country} />
-            <div className="countryCard" key={country.cca3}>
-              <img
-                src={country.flags.png}
-                alt={`Flag of ${country.name.common}`}
-                className="flag"
-              />
-              <p>{country.name.common}</p>
-            </div>
+          {filteredCountries.map(country => (
+            <Card key={country.cca3} country={country} />
           ))}
         </div>
       )}
